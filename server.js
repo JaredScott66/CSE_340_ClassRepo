@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const carDetailRoute = require('./routes/carDetailRoute')
 const utilities = require("./utilities/")
 
 
@@ -30,6 +31,8 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Car detailed View Routes
+app.use('/inv', carDetailRoute)
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry! The page you are looking for decided it would rather be anywhere else'})

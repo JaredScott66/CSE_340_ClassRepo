@@ -36,7 +36,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + ' details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -57,6 +57,39 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* ***********************************
+ * Build car detailed view HTML
+ ************************************* */
+Util.buildDetailedView = async function(data, vehicle) {
+  let detail_view
+  if (data.length > 0){
+    data = data[0]
+    detail_view = '<section id="carDetail">'
+    detail_view += '<img id="carImg" src="' + data.inv_image
+    + '" alt="Image of' + data.inv_make + ' ' + data.inv_model
+    + ' on CSE Motors" />'
+    detail_view += '<h2>' + data.inv_year + ' ' + data.inv_make 
+    + ' ' + data.inv_model + '</h2>'
+    detail_view += '<div id="carCard">'
+    detail_view += '<h2>' + 'Price: ' + new Intl.NumberFormat('en-US').format(data.inv_price)
+    + '</h2>'
+    detail_view += '<ul>'
+    detail_view += '<li>' + '<p class="facts">Current Miles: ' + data.inv_miles + '</p>' 
+    + '</li>'
+    detail_view += '<li>' + '<p class="facts">Color: ' + data.inv_color + '</p>' 
+    + '</li>'
+    detail_view += '</ul>'
+    detail_view += '<p id="description">' + data.inv_description + '</p>'
+    detail_view += '<h3>Contact Us</h3>'
+    detail_view += '</div>'
+    detail_view += '</section>'
+  } else {
+    detail_view += '<p class="notice">Sorry, vehicle could not be found</p>'
+  }
+  return detail_view
+}
+
 
 /* ***********************************
  * Middleware For Handling Errors
