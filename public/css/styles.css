@@ -158,6 +158,46 @@ nav ul li {
   margin: 10px;
 }
 
+/* Detailed Car View */
+
+#detailVeiwTitle {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  margin: 0 auto;
+}
+
+#carDetail {
+  grid-row: 2/4;
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 1fr;
+}
+
+#carImg {
+  grid-row: 1/2;
+  grid-column: 1/2;
+  margin: 10px;
+  border: 3px solid black;
+}
+
+#nameTitle {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  background-color: rgb(0, 68, 146);
+  color: azure;
+}
+
+#carCard {
+  grid-row: 2/3;
+  grid-column: 2/3;
+}
+
+#carCard h2 {
+  font-weight: bolder;
+}
+
+/* Middle/Large View */
 @media screen and (min-width: 800px) {
   html {
     background-image: url("/images/site/small_check.jpg");

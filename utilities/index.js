@@ -67,9 +67,9 @@ Util.buildDetailedView = async function(data, vehicle) {
     data = data[0]
     detail_view = '<section id="carDetail">'
     detail_view += '<img id="carImg" src="' + data.inv_image
-    + '" alt="Image of' + data.inv_make + ' ' + data.inv_model
+    + '" alt="Image of ' + data.inv_make + ' ' + data.inv_model
     + ' on CSE Motors" />'
-    detail_view += '<h2>' + data.inv_year + ' ' + data.inv_make 
+    detail_view += '<h2 id="nameTitle">' + data.inv_year + ' ' + data.inv_make 
     + ' ' + data.inv_model + '</h2>'
     detail_view += '<div id="carCard">'
     detail_view += '<h2>' + 'Price: ' + new Intl.NumberFormat('en-US').format(data.inv_price)
