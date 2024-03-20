@@ -72,10 +72,10 @@ Util.buildDetailedView = async function(data, vehicle) {
     detail_view += '<h2 id="nameTitle">' + data.inv_year + ' ' + data.inv_make 
     + ' ' + data.inv_model + '</h2>'
     detail_view += '<div id="carCard">'
-    detail_view += '<h2>' + 'Price: ' + new Intl.NumberFormat('en-US').format(data.inv_price)
+    detail_view += '<h2>' + 'Price: $' + new Intl.NumberFormat('en-US').format(data.inv_price)
     + '</h2>'
     detail_view += '<ul>'
-    detail_view += '<li>' + '<p class="facts">Current Miles: ' + data.inv_miles + '</p>' 
+    detail_view += '<li>' + '<p class="facts">Current Miles: ' +  new Intl.NumberFormat('en-US').format(data.inv_miles) + '</p>' 
     + '</li>'
     detail_view += '<li>' + '<p class="facts">Color: ' + data.inv_color + '</p>' 
     + '</li>'
