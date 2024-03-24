@@ -37,4 +37,28 @@ invCont.buildByInvId = async function (req, res, next) {
   })
 }
 
+/* ***************************
+ *  Build Management View page
+ * ************************** */
+invCont.buildManageView = async function (req, res, next) {
+    let nav = await utilities.getNav()
+    res.render("./inventory/management", {
+      title: "Manage",
+      nav,
+      errors: null,
+  })
+}
+
+/* ***************************
+ *  Build new class entry page
+ * ************************** */
+invCont.buildAddClassView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add New Class",
+    nav,
+    errors: null,
+  }) 
+}
+
 module.exports = invCont

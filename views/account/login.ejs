@@ -5,14 +5,21 @@
     } %>
 
 <%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
 
 <%# Login View %>
 
-<form class="accountSysStyle" id="loginForm">
+<form class="accountSysStyle" id="loginForm" action="/account/login" method="post">
     <label for="account_email">Email:</label><br>
     <input class="reqInput" type="email" id="account_email" name="account_email" placeholder="something@example.com" required><br><br>
     <label for="account_password">Password:</label><br>
-    <input class="reqInput" type="password" id="account_password" name="account_password" placeholder="*******" required><br>
+    <input class="reqInput" type="password" id="account_password" name="account_password" placeholder="*******" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br>
     <input id="logSubmitButton" type="submit" value="Submit">
     <h3 id="signUpLink">No Account?<a href="../account/register"> Sign-up</a></h3>
 </form>

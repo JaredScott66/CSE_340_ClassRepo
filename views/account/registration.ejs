@@ -18,7 +18,7 @@
 <!-- <label for="registerForm">Register</label> -->
 <form action="/account/register" method="post" class="accountSysStyle" id="registerForm" name="registerForm">
     <label for="account_firstname">First Name:</label><br>
-    <input class="reqInput" type="text" name="account_firstname" placeholder="John" required><br><br>
+    <input class="reqInput" type="text" name="account_firstname" placeholder="John" required value="<%= locals.account_firstname %>"><br><br>
     <label for="account_lastname">Last Name:</label><br>
     <input class="reqInput" type="text" name="account_lastname" placeholder="Doe" required><br><br>
     <label for="account_email">Email:</label><br>

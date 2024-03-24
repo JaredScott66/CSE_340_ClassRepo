@@ -14,6 +14,7 @@ const app = express()
 const bodyParser = require("body-parser")
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
+const invController = require("./controllers/invController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const carDetailRoute = require('./routes/carDetailRoute')
 // const accountRoute = require("./routes/accountRoute") -- Moved to line 60
@@ -59,7 +60,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Car detailed View Routes
 app.use('/inv', carDetailRoute)
-//Account login Route
+// Inventory Manage View Routes
+app.use('/inv', utilities.handleErrors(invController.buildManageView))
+// Account login Route
 app.use("/account", require("./routes/accountRoute"))
 
 // File Not Found Route - must be last route in list
