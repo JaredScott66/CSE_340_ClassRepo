@@ -1,0 +1,19 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+
+<%# Login View %>
+
+<form class="accountSysStyle" id="loginForm">
+    <label for="account_email">Email:</label><br>
+    <input class="reqInput" type="email" id="account_email" name="account_email" placeholder="something@example.com" required><br><br>
+    <label for="account_password">Password:</label><br>
+    <input class="reqInput" type="password" id="account_password" name="account_password" placeholder="*******" required><br>
+    <input id="logSubmitButton" type="submit" value="Submit">
+    <h3 id="signUpLink">No Account?<a href="../account/register"> Sign-up</a></h3>
+</form>
+

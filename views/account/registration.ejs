@@ -1,0 +1,32 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<%# Registration View %>
+
+<!-- <label for="registerForm">Register</label> -->
+<form action="/account/register" method="post" class="accountSysStyle" id="registerForm" name="registerForm">
+    <label for="account_firstname">First Name:</label><br>
+    <input class="reqInput" type="text" name="account_firstname" placeholder="John" required><br><br>
+    <label for="account_lastname">Last Name:</label><br>
+    <input class="reqInput" type="text" name="account_lastname" placeholder="Doe" required><br><br>
+    <label for="account_email">Email:</label><br>
+    <input class="reqInput" type="email" name="account_email" placeholder="something@example.com" required><br><br>
+    <label for="account_password">Password:</label><br>
+    <div></div>
+    <input class="reqInput" type="password" name="account_password" placeholder="*******" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br>
+    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+    <input id="logSubmitButton" type="submit" name="registerForm" value="Submit">
+
+</form>
