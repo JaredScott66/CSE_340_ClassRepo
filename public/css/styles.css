@@ -12,6 +12,10 @@ body {
   flex-flow: column;
 }
 
+main {
+  min-height: 300px;
+}
+
 header {
   display: flex;
   height: 50px;
@@ -281,6 +285,39 @@ nav ul li {
 #logSubmitButton:hover {
   color: rgb(197, 197, 197);
   background-color: antiquewhite;
+}
+
+#manageDiv {
+  background-color: rgb(36, 92, 175);
+  margin: 0 auto;
+  grid-row: 2/4;
+  grid-column: 1/3;
+  align-self: center;
+  display: flex;
+  flex-flow: column;
+  min-height: 22dvh;
+  min-width: 9dvw;
+  justify-content: space-evenly;
+}
+
+.manageOptions {
+  background-color: rgba(221, 221, 221, 0.829);
+  align-self: center;
+  padding: 5px;
+  text-wrap: wrap;
+  height: 5dvh;
+  width: 6dvw;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 5px 5px 5px black;
+  text-decoration: none;
+  color: blue;
+  font-weight: bolder;
+}
+
+.manageOptions:hover {
+  background-color: rgba(221, 221, 221, 0.493);
+  box-shadow: 2px 2px 2px black;
 }
 
 /* Middle/Large View */
