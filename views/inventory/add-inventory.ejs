@@ -1,0 +1,39 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form action="/inv/addInv" method="post" id="invAddForm" name="invAddForm">
+    <label for="classification_id">Classification</label>
+    <%- class_options %><br>
+    <label for="inv_make">Make</label>
+    <input class="reqInput" type="text" name="inv_make" required><br>
+    <label for="inv_model">Model</label>
+    <input class="reqInput" type="text" name="inv_model" required><br>
+    <label for="inv_year">Year</label>
+    <input class="reqInput" type="text" name="inv_year" required><br>
+    <label for="inv_description">Description</label>
+    <input class="reqInput" type="textarea" style="width:200px; height:100px;" name="inv_description" required><br>
+    <label for="inv_image">Image</label>
+    <input class="reqInput" type="text" name="inv_image" required><br>
+    <label for="inv_thumbnail">Thumbnail</label>
+    <input class="reqInput" type="text" name="inv_thumbnail" required><br>
+    <label for="inv_price">Price</label>
+    <input class="reqInput" type="text" name="inv_price" required><br>
+    <label for="inv_miles">Miles</label>
+    <input class="reqInput" type="text" name="inv_miles" required><br>
+    <label for="inv_color">Color</label>
+    <input class="reqInput" type="text" name="inv_color" required><br>
+    <input id="logSubmitButton" type="submit" name="invAddForm" value="Submit">
+</form>

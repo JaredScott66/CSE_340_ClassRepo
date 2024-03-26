@@ -4,12 +4,11 @@
       res.redirect('/')
     } %>
 
-<% if (errors) { %>
-    <ul class="notice">
-   <% errors.array().forEach(error => { %>
-     <li><%= error.msg %></li>
-  <%  }) %>
-   </ul>
-  <% } %>
 
 <%- messages() %>
+
+<form action="/inv/addClass" method="post" id="classAddForm" name="classAddForm">
+    <label for="classification_name">New Class Name</label>
+    <input class="reqInput" type="text" name="classification_name" required pattern="^[a-zA-Z0-9]+$"><br>  
+    <input id="logSubmitButton" type="submit" name="classAddForm" value="Submit">
+</form>

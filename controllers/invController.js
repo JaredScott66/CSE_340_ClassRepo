@@ -54,12 +54,80 @@ invCont.buildManageView = async function (req, res, next) {
  * ************************** */
 invCont.buildAddClassView = async function (req, res, next) {
   let nav = await utilities.getNav()
-  
   res.render("./inventory/add-classification", {
     title: "Add New Class",
     nav,
     errors: null,
   }) 
+}
+
+/* ***************************
+ *  Build new inventory entry page
+ * ************************** */
+invCont.addInvView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const class_options = await utilities.buildClassificationList()
+  res.render("./inventory/add-inventory", {
+    title: "Add New Car",
+    nav,
+    class_options,
+    errors: null,
+  })
+}
+
+/* ***************************
+ *  Process new class entry
+ * ************************** */
+invCont.addClassification = async function (req, res) {
+  let nav = await utilities.getNav()
+  const { classification_name } = req.body
+  const addResult = await invModel.addClassItem(classification_name)
+
+  if (addResult) {
+    req.flash(
+      "notice",
+      `Success! Classification ${classification_name} added to database`
+    )
+    res.status(200).render("./inventory/add-classification", {
+      title: "Add classification",
+      nav,
+    })
+  } else {
+    req.flash("notice", "Sorry, the class addition has failed.")
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+    })
+  }
+}
+
+/* ***************************
+ *  Process new inventory entry
+ * ************************** */
+invCont.addNewInventory = async function (req, res) {
+  let nav = await utilities.getNav()
+  const class_options = await utilities.buildClassificationList()
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
+  const addResult = await invModel.addInventoryItem(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color)
+
+  if (addResult) {
+    req.flash(
+      "notice",
+      "Success! New Car added to database"
+    )
+    res.status(200).render("./inventory/add-inventory", {
+      title: "Add New Car",
+      nav,
+      class_options,
+    })
+  } else {
+    req.flash("notice", "Sorry, the class addition has failed.")
+    res.status(501).render("./inventory/add-inventory", {
+      title: "Add New Car",
+      nav,
+      class_options,
+    })
+  }
 }
 
 module.exports = invCont

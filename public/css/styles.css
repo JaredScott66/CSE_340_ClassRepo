@@ -221,6 +221,18 @@ nav ul li {
   padding: 8px;
 }
 
+.reqInput {
+  width: 15dvw;
+}
+
+.reqInput:hover {
+  background-color: rgb(216, 216, 216);
+}
+
+/* #classificationList:hover {
+  background-color: rgb(216, 216, 216);
+} */
+
 /* .reqInput:required {
   border-right: solid red 5px;
 } */
@@ -278,7 +290,6 @@ nav ul li {
   border-radius: 5px;
   margin: 3px;
   padding: 6px;
-  margin-left: 35%;
   align-self: center;
 }
 
@@ -318,6 +329,34 @@ nav ul li {
 .manageOptions:hover {
   background-color: rgba(221, 221, 221, 0.493);
   box-shadow: 2px 2px 2px black;
+}
+
+#classAddForm {
+  border: solid black 2px;
+  background-color: rgb(36, 92, 175);
+  margin: 0 auto;
+  grid-column: 1/3;
+  grid-row: 2/4;
+  align-self: center;
+  padding: 8px;
+  width: 15dvw;
+}
+
+#classAddForm, #invAddForm label {
+  color: white;
+}
+
+#invAddForm {
+  background-color: rgb(36, 92, 175);
+  margin: 0 auto;
+  grid-row: 2/4;
+  grid-column: 1/3;
+  align-self: center;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  flex-flow: column; 
+  min-width: 23dvw;
 }
 
 /* Middle/Large View */
