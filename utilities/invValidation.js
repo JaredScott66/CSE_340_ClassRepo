@@ -88,11 +88,13 @@ validate.addInventoryRules = () => {
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
+        const class_options = await utilities.buildClassificationList()
         let nav = await utilities.getNav()
         res.render("inventory/add-inventory", {
             errors,
             title: "Add New Car",
             nav,
+            class_options,
             classification_id, 
             inv_make, 
             inv_model, 
