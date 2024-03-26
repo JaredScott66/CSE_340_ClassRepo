@@ -109,6 +109,7 @@ invCont.addNewInventory = async function (req, res) {
   const class_options = await utilities.buildClassificationList()
   const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body
   const addResult = await invModel.addInventoryItem(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color)
+  
 
   if (addResult) {
     req.flash(
@@ -119,6 +120,7 @@ invCont.addNewInventory = async function (req, res) {
       title: "Add New Car",
       nav,
       class_options,
+      errors: null,
     })
   } else {
     req.flash("notice", "Sorry, the class addition has failed.")
