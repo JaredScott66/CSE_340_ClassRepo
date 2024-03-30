@@ -7,10 +7,27 @@ const utilities = require("../utilities/")
 
 //Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
+
 //Route to build new classification view
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassView));
+
 //Route to build new Inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.addInvView));
+
+//Route to retreive inventory info
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+//Route to modify inventory
+router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventoryView))
+
+//Route to Delete confirm View
+router.get("/", utilities.handleErrors(invController.buildManageView))
+
+//Route Delete Confirm View
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
+
+//Route to post delete SQL
+router.post('/delete', utilities.handleErrors(invController.deleteFromDatabase)) 
 
 //Route to add new classification
 router.post(

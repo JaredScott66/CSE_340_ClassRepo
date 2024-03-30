@@ -9,6 +9,9 @@ const utilities = require("../utilities/")
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 //Route to build registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
+//Route to build account manager view
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManageView))
+
 
 //Route to post registration info
 router.post(
@@ -23,11 +26,7 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    utilities.handleErrors(
-    (req, res) => {
-      res.status(200).send('login process')
-    }
-  ))
+    utilities.handleErrors(accountController.accountLogin))
 
 
 module.exports = router;

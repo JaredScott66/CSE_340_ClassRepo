@@ -12,7 +12,23 @@
   <%  }) %>
    </ul>
   <% } %>
+
 <div id="manageDiv"> 
     <a class="manageOptions" href="../inv/add-inventory">Add new inventory</a> 
     <a class="manageOptions" href="../inv/add-classification">Add new classification</a>
+        
+<h2>Manage Inventory</h2>
+<p>Select classification from list to see items.</p>
+    <% if (classificationSelect) { %>
+        <%- classificationSelect %>
+        <%} else {
+            res.redirect('/')
+        } %>
+
+
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page</noscript>
+
+<script src="../../js/inventory.js"></script>
 </div>
+

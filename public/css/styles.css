@@ -299,6 +299,8 @@ nav ul li {
 }
 
 #manageDiv {
+  border: 2px solid black;
+  box-shadow: 3px 3px 3px black;
   background-color: rgb(36, 92, 175);
   margin: 0 auto;
   grid-row: 2/4;
@@ -306,15 +308,20 @@ nav ul li {
   align-self: center;
   display: flex;
   flex-flow: column;
-  min-height: 22dvh;
-  min-width: 9dvw;
+  min-height: 30dvh;
+  min-width: 15dvw;
+  padding: 10px;
   justify-content: space-evenly;
+  color: white;
 }
+
+
 
 .manageOptions {
   background-color: rgba(221, 221, 221, 0.829);
   align-self: center;
   padding: 5px;
+  margin: 5px;
   text-wrap: wrap;
   height: 5dvh;
   width: 6dvw;
@@ -357,6 +364,23 @@ nav ul li {
   display: flex;
   flex-flow: column; 
   min-width: 23dvw;
+}
+
+#inventoryDisplay, tr {
+  padding: 3px;
+}
+
+.editOption {
+  color: blue;
+  border-radius: 8px;
+  padding: 2px;
+  text-decoration: none;
+  background-color: rgba(221, 221, 221, 0.829);
+  font-weight: bolder;
+}
+
+.editOption:hover {
+  background-color: rgba(221, 221, 221, 0.493);
 }
 
 /* Middle/Large View */

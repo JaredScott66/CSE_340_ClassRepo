@@ -19,6 +19,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const carDetailRoute = require('./routes/carDetailRoute')
 // const accountRoute = require("./routes/accountRoute") -- Moved to line 60
 const utilities = require("./utilities/")
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * Middleware
@@ -35,6 +36,8 @@ app.use(session({
 }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true})) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
@@ -42,6 +45,7 @@ app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
+
 
 /* ***********************
  * View Engine and Templates
@@ -60,8 +64,6 @@ app.get("/", utilities.handleErrors(baseController.buildHome))
 app.use("/inv", inventoryRoute)
 // Car detailed View Routes
 app.use('/inv', carDetailRoute)
-// Inventory Manage View Routes
-app.use('/inv', utilities.handleErrors(invController.buildManageView))
 // Account login Route
 app.use("/account", require("./routes/accountRoute"))
 
