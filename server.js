@@ -59,7 +59,7 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 // Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.get("/", utilities.checkLogin, utilities.handleErrors(baseController.buildHome))
 // Inventory Routes
 app.use("/inv", inventoryRoute)
 // Car detailed View Routes

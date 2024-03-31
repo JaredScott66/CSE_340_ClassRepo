@@ -20,14 +20,19 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 //Route to modify inventory
 router.get("/edit/:inv_id", utilities.handleErrors(invController.buildEditInventoryView))
 
-//Route to Delete confirm View
-router.get("/", utilities.handleErrors(invController.buildManageView))
+//Route to Management View
+router.get("/", utilities.checkLogin, utilities.handleErrors(invController.buildManageView))
 
 //Route Delete Confirm View
 router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteView))
 
 //Route to post delete SQL
-router.post('/delete', utilities.handleErrors(invController.deleteFromDatabase)) 
+router.post(
+    '/delete', 
+    utilities.handleErrors(invController.deleteFromDatabase)
+) 
+
+
 
 //Route to add new classification
 router.post(
@@ -45,6 +50,12 @@ router.post(
     utilities.handleErrors(invController.addNewInventory)
 )
 
+//Route to post edits to database
+router.post('/update',
+    classValidate.addInventoryRules(),
+    classValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
+)
 
 
 module.exports = router;

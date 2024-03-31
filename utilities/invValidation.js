@@ -112,6 +112,38 @@ validate.addInventoryRules = () => {
 }
 
  /* ******************************
+ * Check data and return errors or continue inventory edit view
+ * ***************************** */
+ validate.checkUpdateData = async (req, res, next) => {
+    const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, inv_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        const class_options = await utilities.buildClassificationList()
+        let nav = await utilities.getNav()
+        res.render("inventory/edit-inventory", {
+            errors,
+            title: "Edit ",
+            nav,
+            class_options,
+            classification_id, 
+            inv_make, 
+            inv_model, 
+            inv_year, 
+            inv_description, 
+            inv_image, 
+            inv_thumbnail, 
+            inv_price, 
+            inv_miles, 
+            inv_color,
+            inv_id,
+        })
+        return
+    }
+    next()
+}
+
+ /* ******************************
  * Check data and return errors or continue class addition
  * ***************************** */
  validate.checkClassData = async (req, res, next) => {
