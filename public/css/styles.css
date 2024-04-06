@@ -22,6 +22,13 @@ header {
   justify-content: space-between;
 }
 
+#tools {
+  width: 150px;
+  grid-column: 2/3;
+  display: flex;
+  flex-flow: column;
+}
+
 .siteName {
   color:blue;
   font-family: "Nunito", sans-serif;
@@ -286,14 +293,14 @@ nav ul li {
   color: rgb(7, 65, 173);
 }
 
-#logSubmitButton {
+.logSubmitButton {
   border-radius: 5px;
   margin: 3px;
   padding: 6px;
   align-self: center;
 }
 
-#logSubmitButton:hover {
+.logSubmitButton:hover {
   color: rgb(197, 197, 197);
   background-color: antiquewhite;
 }
@@ -314,8 +321,6 @@ nav ul li {
   justify-content: space-evenly;
   color: white;
 }
-
-
 
 .manageOptions {
   background-color: rgba(221, 221, 221, 0.829);
@@ -407,6 +412,28 @@ nav ul li {
 
 .editOption:hover {
   background-color: rgba(221, 221, 221, 0.493);
+}
+
+#accEditDiv {
+  grid-row: 2/4;
+  grid-column: 1/4;
+  display: flex;
+  flex-flow: column;
+}
+
+#accountEditFormPass {
+  max-width: 21dvw;
+  color: white;
+}
+
+#accEditFormLabel {
+  text-align: center;
+}
+
+#accEditLink {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  align-self: center;
 }
 
 /* Middle/Large View */

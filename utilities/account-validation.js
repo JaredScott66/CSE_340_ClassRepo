@@ -110,6 +110,32 @@ validate.checkRegData = async (req, res, next) => {
 }
 
  /* ******************************
+ * Check data and return errors or continue to editing
+ * ***************************** */
+ validate.checkEditData = async (req, res, next) => {
+    const { account_firstname, account_lastname, account_email, account_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+            req.flash("notice", "Edit Successful")
+            let nav = await Util.getNav()
+            res.render("account/account-manage", {
+                title: `Account Management`,
+                nav,
+                errors: null,
+                account_firstname: account_firstname,
+                account_lastname: account_lastname,
+                account_email: account_email,
+                account_password: account_password,
+                account_id: account_id,    
+            })
+        return
+    }
+    next()
+}
+
+
+ /* ******************************
  * Check data and return errors or continue through login
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {

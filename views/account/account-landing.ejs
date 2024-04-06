@@ -1,0 +1,26 @@
+<% if (title) { %>
+    <h1><%= title %></h1><br>
+    <% } else {
+      res.redirect('/')
+    } %>
+  
+  <%- messages() %>
+  <% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+  <% } %>
+
+  <div id="accEditLink">
+    <p>Logged in</p> 
+    <a href="/account/account-manage">Edit Account Information</a>
+</div>
+
+<% if (locals.accountData.account_type === 'Admin' || locals.accountData.account_type === 'Employee') { %>
+    <div>
+        <h2>Inventory Management</h2>
+        <a href="/inv/">Manage Inventory</a>
+    </div>
+<% } %>

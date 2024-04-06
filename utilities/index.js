@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const jwt = require("jsonwebtoken")
+const cookieParser = require("cookie-parser")
 require("dotenv").config()
 const Util = {}
 
@@ -151,6 +152,60 @@ Util.checkLogin = (req, res, next) => {
   } else {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
+  }
+}
+
+/* ****************************************
+ *  Middleware for Account access level
+ * ************************************ */
+
+// Check for "Admin" level
+Util.checkAccessManage = (res, req, next) => {
+  accountLevel = res.cookies.accountAccess
+  if (accountLevel === "Admin" || accountLevel === "Employee" ) {
+    console.log(accountLevel)
+    next()
+  } else {
+    res.flash("notice", "Access Denied")
+    return req.redirect("/account/login")
+  }
+}
+
+// Check for "Employee" level
+Util.checkAccessEmploy = (res, req, next) => {
+  accountLevel = res.cookies.accountAccess
+  if (accountLevel === "Employee") {
+    console.log(accountLevel)
+    next()
+  } else {
+    res.flash("notice", "Access Denied")
+    return req.redirect("/account/login")
+  }
+}
+
+// Check for "Client" level
+Util.checkAccessClient = (res, req, next) => {
+  accountLevel = res.cookies.accountAccess
+  if (accountLevel === "Client") {
+    console.log(accountLevel)
+    next()
+  } else {
+    res.flash("notice", "Access Denied")
+    return req.redirect("/account/login")
+  }
+}
+
+
+/* ****************************************
+ *  Checking for Name if any
+ * ************************************ */
+Util.checkWho = (res, req, next) => {
+  const name = res.locals.account_name
+  let response
+  if (!name) {
+    res.locals.headerLink = '<a id="accountSign" title="Click to log in" href="/account/login">My Account</a>'
+  } else {
+    res.locals.headerLink = `<a id="accountSign" title="Account Manager" href="/account/manage">Welcome ${name}</a>`
   }
 }
 
