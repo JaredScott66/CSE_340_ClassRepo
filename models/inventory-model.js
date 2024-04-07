@@ -26,6 +26,20 @@ async function getInventoryByClassificationId(classification_id) {
 }
 
 /* ***************************
+ *  Get Inventory item by price
+ * ************************** */
+async function getInventoryByPrice(classification_id, price) {
+  const sql = `SELECT * FROM public.inventory AS i JOIN public.classification AS c ON i.classification_id = c.classification_id  WHERE inv_price < $1 AND c.classification_id = $2`
+  try {
+    const data = await pool.query(sql, [price, classification_id])
+    return data.rows
+  } catch (error) {
+    console.error("getInventoryByPrice Error" + error)
+  }
+
+}
+
+/* ***************************
  *  Get Inventory item by Id
  * ************************** */
 async function getItemById(item_id) {
@@ -130,5 +144,6 @@ module.exports = {
   checkExistingClass, 
   addInventoryItem, 
   updateInventory, 
-  deleteFromInventory
+  deleteFromInventory,
+  getInventoryByPrice
 };

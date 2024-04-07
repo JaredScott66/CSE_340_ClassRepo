@@ -34,7 +34,17 @@ Util.getNav = async function (req, res, next) {
 Util.buildClassificationGrid = async function(data){
   let grid
   if(data.length > 0){
-    grid = '<ul id="inv-display">'
+    grid = '<div id="priceRangeFinder">'
+    grid += '  <form action="/inv/class-price-ranged" method="post" id="rangerForm" name="priceRangeForm">'
+    grid += '    <input id="priceRanger" type="range" min="10000" max="900000" step="5000" name="ranger">'
+    grid += '    <p>Price Range: <output id="priceValue"></output></p>'
+    grid += '    <input id="logSubmitButton" type="submit" name="priceRangeForm" value="Search">'
+    grid += '    <input type="hidden" name="classification_id" value="' + data[0].classification_id + '">'
+    grid += '  </form>'
+    grid += '  <script src="../../js/price-range-finder.js"></script>'
+    grid += '</div>'
+
+    grid += '<ul id="inv-display">'
     data.forEach(vehicle => { 
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
@@ -208,5 +218,7 @@ Util.checkWho = (res, req, next) => {
     res.locals.headerLink = `<a id="accountSign" title="Account Manager" href="/account/manage">Welcome ${name}</a>`
   }
 }
+
+
 
 module.exports = Util

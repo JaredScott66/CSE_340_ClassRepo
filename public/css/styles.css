@@ -436,6 +436,12 @@ nav ul li {
   align-self: center;
 }
 
+#priceRangeFinder {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  max-height: 200px;
+}
+
 /* Middle/Large View */
 @media screen and (min-width: 800px) {
   html {

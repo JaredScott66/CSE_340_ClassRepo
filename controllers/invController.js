@@ -29,6 +29,35 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
+ *  Build inventory by price view
+ * ************************** */
+invCont.buildInvByPrice = async function (req, res, next) {
+  const {classification_id, ranger} = req.body
+  const nav = await utilities.getNav()
+  const data = await invModel.getInventoryByPrice(classification_id, ranger)
+  
+
+
+  const grid = await utilities.buildClassificationGrid(data)
+  if (data[0]) {
+    // req.flash("notice", "Success!")
+    const className = data[0].classification_name
+    res.render("./inventory/classification", {
+      title: className + " vehicles",
+      nav,
+      grid,
+      errors: null,
+    })
+  } else {
+    res.render("./inventory/no-itemsForClass", {
+      title: "No Vehicles at this price",
+      nav,
+      errors: null,      
+    })
+  } 
+}
+
+/* ***************************
  *  Build page by inventory Id view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {

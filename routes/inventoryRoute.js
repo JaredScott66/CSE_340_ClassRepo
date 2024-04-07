@@ -74,5 +74,8 @@ router.post('/update',
     utilities.handleErrors(invController.updateInventory)
 )
 
+//Route for price matching view
+router.post("/class-price-ranged", utilities.handleErrors(invController.buildInvByPrice))
+
 
 module.exports = router;
